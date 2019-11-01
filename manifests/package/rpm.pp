@@ -11,6 +11,7 @@ class httpproxy::package::rpm {
     '# The port and machine name of an HTTP proxy host',
     # "%_httpport ${httpproxy::http_proxy_port}",
     "%_httpproxy ${httpproxy::proxy_uri}",
+    '',
   ]
 
   file { '/etc/rpm/macros.httpproxy':

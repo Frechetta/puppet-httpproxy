@@ -7,6 +7,7 @@ class httpproxy::package::apt {
     '',
     "Acquire::http::Proxy \"${httpproxy::proxy_uri}\";",
     "Acquire::https::Proxy \"${httpproxy::proxy_uri}\";",
+    '',
   ]
 
   file { '/etc/apt/apt.conf.d/05proxy':
