@@ -5,8 +5,8 @@ class httpproxy::package::apt {
   $lines = [
     '# File managed by Puppet',
     '',
-    "Acquire::http::Proxy \"${httpproxy::proxy_uri}\"";
-    "Acquire::https::Proxy \"${httpproxy::proxy_uri}\"";
+    "Acquire::http::Proxy \"${httpproxy::proxy_uri}\";",
+    "Acquire::https::Proxy \"${httpproxy::proxy_uri}\";"
   ]
 
   file { '/etc/apt/apt.conf.d/05proxy':
