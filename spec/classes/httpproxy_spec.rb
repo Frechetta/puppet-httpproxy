@@ -20,6 +20,7 @@ describe 'httpproxy' do
           it { is_expected.not_to contain_class('httpproxy::package::purge_apt_conf') }
         end
         it { is_expected.not_to contain_class('httpproxy::wget') }
+        it { is_expected.not_to contain_class('httpproxy::gem') }
       end
 
       context 'with all activated' do
@@ -30,6 +31,7 @@ describe 'httpproxy' do
             :profiled        => true,
             :packagemanager  => true,
             :wget            => true,
+            :gem             => true,
             :purge_apt_conf  => true
           }
         end
@@ -45,6 +47,7 @@ describe 'httpproxy' do
           it { is_expected.not_to contain_class('httpproxy::package::purge_apt_conf') }
         end
         it { is_expected.to contain_class('httpproxy::wget') }
+        it { is_expected.to contain_class('httpproxy::gem') }
       end
 
       context 'with all deactivated' do
@@ -55,6 +58,7 @@ describe 'httpproxy' do
             :profiled        => false,
             :packagemanager  => false,
             :wget            => false,
+            :gem             => false,
             :purge_apt_conf  => false
           }
         end
@@ -70,6 +74,7 @@ describe 'httpproxy' do
           it { is_expected.not_to contain_class('httpproxy::package::purge_apt_conf') }
         end
         it { is_expected.not_to contain_class('httpproxy::wget') }
+        it { is_expected.not_to contain_class('httpproxy::gem') }
       end
     end
   end

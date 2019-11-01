@@ -10,6 +10,7 @@ class httpproxy (
   $profiled        = true,
   $packagemanager  = true,
   $wget            = false,
+  $gem             = false,
   Boolean $purge_apt_conf  = false,
 ){
 
@@ -44,4 +45,5 @@ class httpproxy (
   if $profiled { contain '::httpproxy::profiled' }
   if $packagemanager { contain '::httpproxy::packagemanager' }
   if $wget { contain '::httpproxy::wget' }
+  if $gem { contain '::httpproxy::gem' }
 }
