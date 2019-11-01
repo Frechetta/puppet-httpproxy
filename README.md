@@ -1,10 +1,10 @@
 httpproxy
 =============
 
-[![Build Status](https://travis-ci.org/MiamiOH/puppet-httpproxy.svg?branch=master)](https://travis-ci.org/MiamiOH/puppet-httpproxy)
-[![Puppet Forge](https://img.shields.io/puppetforge/v/MiamiOH/httpproxy.svg)](https://forge.puppet.com/MiamiOH/httpproxy)
-[![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/MiamiOH/httpproxy.svg)](https://forge.puppet.com/MiamiOH/httpproxy)
-[![Puppet Forge Score](https://img.shields.io/puppetforge/f/MiamiOH/httpproxy.svg)](https://forge.puppet.com/MiamiOH/httpproxy/scores)
+[![Build Status](https://travis-ci.org/Frechetta/puppet-httpproxy.svg?branch=master)](https://travis-ci.org/Frechetta/puppet-httpproxy)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/Frechetta/httpproxy.svg)](https://forge.puppet.com/Frechetta/httpproxy)
+[![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/Frechetta/httpproxy.svg)](https://forge.puppet.com/Frechetta/httpproxy)
+[![Puppet Forge Score](https://img.shields.io/puppetforge/f/Frechetta/httpproxy.svg)](https://forge.puppet.com/Frechetta/httpproxy/scores)
 
 #### Table of Contents
 
@@ -46,7 +46,7 @@ Please contribute, pull requests are welcome. The more proxies that can be manag
 
 ## Limitations
 
-This module has been tested against Puppet 4, CentOS 5,6,7, and Ubuntu 14.04.  
+This module has been tested against Puppet 4, CentOS 5,6,7, and Ubuntu 14.04.
 
 ## Contributors
 
