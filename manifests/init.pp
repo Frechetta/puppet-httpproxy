@@ -4,6 +4,8 @@
 class httpproxy (
   Optional[Stdlib::Host] $http_proxy      = undef,
   Optional[Stdlib::Port] $http_proxy_port = undef,
+  $http_proxy_user = undef,
+  $http_proxy_pass = undef,
   $no_proxy        = undef,
   $profiled        = true,
   $packagemanager  = true,
@@ -26,11 +28,16 @@ class httpproxy (
     default => ":${http_proxy_port}",
   }
 
+  $proxy_cred_string = $http_proxy_user ? {
+    undef   => undef,
+    default => "${http_proxy_user}:${http_proxy_pass}@",
+  }
+
   # Checks if $http_proxy contains a string. If it is null, $proxy_uri is set to null.
   # Otherwise, it will concatenate $http_proxy and $proxy_port_string.
   $proxy_uri = $http_proxy ? {
     undef   => undef,
-    default => "http://${http_proxy}${proxy_port_string}",
+    default => "http://${proxy_cred_string}${http_proxy}${proxy_port_string}",
   }
 
   # Boolean parameter for class selection
