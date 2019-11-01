@@ -3,11 +3,11 @@
 # https://forge.puppetlabs.com/puppetlabs/apt
 class httpproxy::package::apt {
   file { 'apt_via_proxy':
-    path    => '/etc/apt/apt.conf.d/05proxy',
     ensure  => $httpproxy::packagemanager::ensure,
+    path    => '/etc/apt/apt.conf.d/05proxy',
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => "Acquire::http::Proxy \"${httpproxy::proxy_uri}\";\nAcquire::https::Proxy \"${httpproxy::proxy_uri}\";"
+    content => "Acquire::http::Proxy \"${httpproxy::proxy_uri}\";\nAcquire::https::Proxy \"${httpproxy::proxy_uri}\";",
   }
 }
