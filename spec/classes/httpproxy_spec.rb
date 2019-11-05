@@ -4,7 +4,7 @@ describe 'httpproxy' do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) do
-        facts.merge(environment => 'test', concat_basedir => '/var/lib/puppet/concat')
+        facts.merge(environment => 'test', :concat_basedir => '/var/lib/puppet/concat')
       end
 
       context 'with defaults' do
