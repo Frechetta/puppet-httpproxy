@@ -11,7 +11,7 @@ describe 'httpproxy' do
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to contain_class('httpproxy::profiled') }
         it { is_expected.to contain_class('httpproxy::packagemanager') }
-        if facts[:osfamily] == 'Debian' or facts[:osfamily] == 'RedHat'
+        if facts[:osfamily] == 'Debian' || facts[:osfamily] == 'RedHat'
           it { is_expected.not_to contain_class('httpproxy::package::purge_apt_conf') }
         elsif facts[:osfamily] == 'Debian'
           it { is_expected.to contain_class('httpproxy::package::apt') }
@@ -67,7 +67,7 @@ describe 'httpproxy' do
         it { is_expected.to compile.with_all_deps }
         it { is_expected.not_to contain_class('httpproxy::profiled') }
         it { is_expected.not_to contain_class('httpproxy::packagemanager') }
-        if facts[:osfamily] == 'Debian' or facts[:osfamily] == 'RedHat'
+        if facts[:osfamily] == 'Debian' || facts[:osfamily] == 'RedHat'
           it { is_expected.not_to contain_class('httpproxy::package::purge_apt_conf') }
         elsif facts[:osfamily] == 'Debian'
           it { is_expected.not_to contain_class('httpproxy::package::apt') }
