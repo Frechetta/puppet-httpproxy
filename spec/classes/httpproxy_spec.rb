@@ -32,6 +32,7 @@ describe 'httpproxy' do
             :packagemanager  => true,
             :wget            => true,
             :gem             => true,
+            :git             => true,
             :purge_apt_conf  => true,
           }
         end
@@ -49,6 +50,7 @@ describe 'httpproxy' do
         end
         it { is_expected.to contain_class('httpproxy::wget') }
         it { is_expected.to contain_class('httpproxy::gem') }
+        it { is_expected.to contain_class('httpproxy::git') }
       end
 
       context 'with all deactivated' do
@@ -60,6 +62,7 @@ describe 'httpproxy' do
             :packagemanager  => false,
             :wget            => false,
             :gem             => false,
+            :git             => false,
             :purge_apt_conf  => false,
           }
         end
@@ -77,6 +80,7 @@ describe 'httpproxy' do
         end
         it { is_expected.not_to contain_class('httpproxy::wget') }
         it { is_expected.not_to contain_class('httpproxy::gem') }
+        it { is_expected.not_to contain_class('httpproxy::git') }
       end
     end
   end

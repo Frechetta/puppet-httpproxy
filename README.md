@@ -24,11 +24,13 @@ proxies in profile.d, apt, yum, and wget. Currently only http (no https) proxies
 
 ## Usage
     class { '::httpproxy':
-      wget            => true,
-      profiled        => true,
-      packagemanager  => true,
-      http_proxy      => 'my.proxy.com',
-      http_proxy_port => '80'
+        wget            => true,
+        profiled        => true,
+        packagemanager  => true,
+        gem             => true,
+        git             == true,
+        http_proxy      => 'my.proxy.com',
+        http_proxy_port => '80'
     }
 
 Puppet will manage the proxy for the desired software when its boolean is set to true. When a proxy is entered,
