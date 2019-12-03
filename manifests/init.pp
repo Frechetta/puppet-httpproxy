@@ -47,5 +47,5 @@ class httpproxy (
   if $packagemanager { contain '::httpproxy::packagemanager' }
   if $wget { contain '::httpproxy::wget' }
   if $gem { contain '::httpproxy::gem' }
-  if $git { contain '::httpproxy::gem' }
+  if $git { contain '::httpproxy::git' }
 }
