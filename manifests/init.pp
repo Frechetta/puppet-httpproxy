@@ -11,6 +11,7 @@ class httpproxy (
   $packagemanager  = true,
   $wget            = false,
   $gem             = false,
+  $git             = false,
   Boolean $purge_apt_conf  = false,
 ){
 
