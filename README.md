@@ -2,9 +2,9 @@ httpproxy
 =============
 
 [![Build Status](https://travis-ci.org/Frechetta/puppet-httpproxy.svg?branch=master)](https://travis-ci.org/Frechetta/puppet-httpproxy)
-[![Puppet Forge](https://img.shields.io/puppetforge/v/Frechetta/httpproxy.svg)](https://forge.puppet.com/Frechetta/httpproxy)
-[![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/Frechetta/httpproxy.svg)](https://forge.puppet.com/Frechetta/httpproxy)
-[![Puppet Forge Score](https://img.shields.io/puppetforge/f/Frechetta/httpproxy.svg)](https://forge.puppet.com/Frechetta/httpproxy/scores)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/frechetta93/httpproxy.svg)](https://forge.puppet.com/frechetta93/httpproxy)
+[![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/frechetta93/httpproxy.svg)](https://forge.puppet.com/frechetta93/httpproxy)
+[![Puppet Forge Score](https://img.shields.io/puppetforge/f/frechetta93/httpproxy.svg)](https://forge.puppet.com/frechetta93/httpproxy/scores)
 
 #### Table of Contents
 

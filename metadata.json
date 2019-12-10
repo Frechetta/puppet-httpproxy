@@ -1,5 +1,5 @@
 {
-  "name": "Frechetta-httpproxy",
+  "name": "frechetta93-httpproxy",
   "version": "2.1.0",
   "author": "Michael Callahan, Chris Edester, Eric Frechette",
   "summary": "Provides a simple way to manage various proxies",
