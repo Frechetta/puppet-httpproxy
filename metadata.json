@@ -1,6 +1,6 @@
 {
   "name": "frechetta93-httpproxy",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "author": "Michael Callahan, Chris Edester, Eric Frechette",
   "summary": "Provides a simple way to manage various proxies",
   "license": "GPL-3.0",
