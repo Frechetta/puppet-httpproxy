@@ -28,7 +28,7 @@ proxies in profile.d, apt, yum, and wget. Currently only http (no https) proxies
         profiled        => true,
         packagemanager  => true,
         gem             => true,
-        git             == true,
+        git             => true,
         http_proxy      => 'my.proxy.com',
         http_proxy_port => '80'
     }
