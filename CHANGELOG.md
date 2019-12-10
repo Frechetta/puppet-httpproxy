@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## 2.1.2 - 2019-12-10  Eric Frechette
+## 2.1.3 - 2019-12-10  Eric Frechette
 - Added support for proxies requiring credentials
 - Added support for ruby and git
 
