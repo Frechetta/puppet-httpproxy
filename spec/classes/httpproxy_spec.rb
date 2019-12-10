@@ -26,14 +26,14 @@ describe 'httpproxy' do
       context 'with all activated' do
         let(:params) do
           {
-            :http_proxy      => 'proxy.test.com',
-            :http_proxy_port => 80,
-            :profiled        => true,
-            :packagemanager  => true,
-            :wget            => true,
-            :gem             => true,
-            :git             => true,
-            :purge_apt_conf  => true,
+            http_proxy: 'proxy.test.com',
+            http_proxy_port: 80,
+            profiled: true,
+            packagemanager: true,
+            wget: true,
+            gem: true,
+            git: true,
+            purge_apt_conf: true,
           }
         end
 
@@ -56,14 +56,14 @@ describe 'httpproxy' do
       context 'with all deactivated' do
         let(:params) do
           {
-            :http_proxy      => 'proxy.test.com',
-            :http_proxy_port => 80,
-            :profiled        => false,
-            :packagemanager  => false,
-            :wget            => false,
-            :gem             => false,
-            :git             => false,
-            :purge_apt_conf  => false,
+            http_proxy: 'proxy.test.com',
+            http_proxy_port: 80,
+            profiled: false,
+            packagemanager: false,
+            wget: false,
+            gem: false,
+            git: false,
+            purge_apt_conf: false,
           }
         end
 
