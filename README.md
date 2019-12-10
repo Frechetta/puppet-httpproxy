@@ -10,7 +10,6 @@ httpproxy
 
 1. [Overview](#overview)
 2. [Usage - Configuration options and additional functionality](#usage)
-    * [Customize the httpproxy options](#customize-the-httpproxy-options)
 3. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 4. [Limitations - OS compatibility, etc.](#limitations)
 5. [Contributors](#contributors)
@@ -24,13 +23,17 @@ proxies in profile.d, apt, yum, and wget. Currently only http (no https) proxies
 
 ## Usage
     class { '::httpproxy':
+        http_proxy      => 'my.proxy.com',
+        http_proxy_port => '80',
+        http_proxy_user => 'proxy_user',
+        http_proxy_pass => 'proxy_pass',
+        no_proxy        => 'intranet.com',
         wget            => true,
         profiled        => true,
         packagemanager  => true,
         gem             => true,
         git             => true,
-        http_proxy      => 'my.proxy.com',
-        http_proxy_port => '80'
+        purge_apt_conf  => false,
     }
 
 Puppet will manage the proxy for the desired software when its boolean is set to true. When a proxy is entered,
@@ -38,6 +41,9 @@ puppet will ensure that the proxy is present. If a proxy is left undefined, pupp
 placed (ensure absent). If the boolean is set to false, nothing will be removed or placed.
 
 The no_proxy parameter takes a comma separated string of addresses to be ignored by the profile.d proxy.
+
+If purge_apt_conf is set to true, the existing /etc/apt.conf file will be removed (if on Debian/Ubuntu) to ensure
+the apt proxy is managed by this module.
 
 ## Reference
 
@@ -52,4 +58,4 @@ This module has been tested against Puppet 4, CentOS 5,6,7, and Ubuntu 14.04.
 
 ## Contributors
 
-Chris Edester and Michael Callahan
+Chris Edester, Michael Callahan, and Eric Frechette
