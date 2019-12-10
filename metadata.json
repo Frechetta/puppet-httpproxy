@@ -1,12 +1,12 @@
 {
-  "name": "MiamiOH-httpproxy",
-  "version": "2.0.0",
-  "author": "Michael Callahan, Chris Edester",
+  "name": "Frechetta-httpproxy",
+  "version": "2.1.0",
+  "author": "Michael Callahan, Chris Edester, Eric Frechette",
   "summary": "Provides a simple way to manage various proxies",
-  "license": "GPL-3.0+",
-  "source": "https://github.com/MiamiOH/puppet-httpproxy.git",
-  "project_page": "https://github.com/MiamiOH/puppet-httpproxy",
-  "issues_url": "https://github.com/MiamiOH/puppet-httpproxy/issues",
+  "license": "GPL-3.0",
+  "source": "https://github.com/Frechetta/puppet-httpproxy.git",
+  "project_page": "https://github.com/Frechetta/puppet-httpproxy",
+  "issues_url": "https://github.com/Frechetta/puppet-httpproxy/issues",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
