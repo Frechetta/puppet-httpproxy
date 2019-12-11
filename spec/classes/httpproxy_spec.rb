@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'httpproxy' do
+describe 'httpproxy', type: 'class' do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) do
@@ -11,21 +11,22 @@ describe 'httpproxy' do
         it { is_expected.to compile.with_all_deps }
       end
 
-      context 'with all activated' do
+      context 'no port' do
         let(:params) do
           {
-            http_proxy: 'proxy.test.com',
-            http_proxy_port: 80,
+            http_proxy: 'http://proxy.test.com',
           }
         end
 
         it { is_expected.to compile.with_all_deps }
+
+        it { is_expected.to }
       end
 
       context 'with all deactivated' do
         let(:params) do
           {
-            http_proxy: 'proxy.test.com',
+            http_proxy: 'http://proxy.test.com',
             http_proxy_port: 80,
           }
         end
