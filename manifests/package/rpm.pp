@@ -17,18 +17,17 @@
 
 # You can contact us through github
 
-# package/rpm.pp (private class)
+# == Class: httpproxy::package::rpm
+#
 # Manages proxies for the rpm package manager
 # /usr/lib/rpm/macros
 # Any per-system configuration
 # should be added to /etc/rpm/macros
+#
 class httpproxy::package::rpm {
-
   $lines = [
     '# File managed by Puppet',
     '',
-    '# The port and machine name of an HTTP proxy host',
-    # "%_httpport ${httpproxy::http_proxy_port}",
     "%_httpproxy ${httpproxy::proxy_uri}",
     '',
   ]

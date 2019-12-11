@@ -17,17 +17,31 @@
 
 # You can contact us through github
 
-# wget.pp (private class)
-# Manages proxies for the popular wget file downloader
+# == define: httpproxy::wget
+#
+# Calling this define will add http_proxy and https_proxy settings to /etc/wgetrc.
+#
 # Uses the puppetlabs/inifile resource
 # https://forge.puppetlabs.com/puppetlabs/inifile
-class httpproxy::wget {
-
-  $ensure = $httpproxy::wget ? {
-    true    => $httpproxy::ensure,
-    default => $httpproxy::wget,
-  }
-
+#
+# === Variables
+#
+# [$ensure]
+#   Should be 'present' or 'absent'. If 'absent', Puppet will ensure the settings are absent.
+#   Default: present
+#   This variable is optional.
+#
+# === Examples
+#
+# httpproxy::wget { 'httpproxy-wget': }   # with defaults
+#
+# httpproxy::wget { 'httpproxy-wget':     # ensure proxy isn't set
+#   ensure => 'absent',
+# }
+#
+define httpproxy::wget (
+  $ensure = 'present',
+) {
   # Writes ini settings defined in init.pp in the wget configuration file.
   ini_setting { 'wget-http_proxy':
     ensure  => $ensure,

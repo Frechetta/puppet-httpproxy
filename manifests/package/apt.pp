@@ -17,9 +17,11 @@
 
 # You can contact us through github
 
-# package/apt.pp (private class)
+# == Class: httpproxy::package::apt
+#
 # Uses the puppetlabs-apt module to manage apt package manager proxies
 # https://forge.puppetlabs.com/puppetlabs/apt
+#
 class httpproxy::package::apt {
   $lines = [
     '# File managed by Puppet',

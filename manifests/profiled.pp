@@ -17,31 +17,42 @@
 
 # You can contact us through github
 
-# Profiled.pp (private class)
-# Manages proxies in profile.d
+# == define: httpproxy::profiled
+#
+# Calling this define will add a script in /etc/profile.d/ called httpproxy.sh that exports
+# http_proxy and https_proxy environment variables.
+#
 # Uses the unibet/profiled module
 # https://forge.puppetlabs.com/unibet/profiled
-class httpproxy::profiled {
-
-  $ensure = $httpproxy::profiled ? {
-    true    => $httpproxy::ensure,
-    default => $httpproxy::profiled,
-  }
+#
+# === Variables
+#
+# [$ensure]
+#   Should be 'present' or 'absent'. If 'absent', Puppet will ensure httpproxy.sh is absent.
+#   Default: present
+#   This variable is optional.
+#
+# === Examples
+#
+# httpproxy::profiled { 'httpproxy-env': }   # with defaults
+#
+# httpproxy::profiled { 'httpproxy-env':     # ensure proxy isn't set
+#   ensure => 'absent',
+# }
+#
+define httpproxy::profiled (
+  $ensure = 'present',
+) {
+  $base = [
+    '# Set http proxy for shell',
+    "export http_proxy=${httpproxy::proxy_uri}",
+    "export https_proxy=${httpproxy::proxy_uri}",
+  ]
 
   if $httpproxy::no_proxy {
-    $lines = [
-      '# Set http proxy for shell',
-      "export http_proxy=${httpproxy::proxy_uri}",
-      "export https_proxy=${httpproxy::proxy_uri}",
-      "export no_proxy=${httpproxy::no_proxy}",
-    ]
-  }
-  else {
-    $lines = [
-      '# Set http proxy for shell',
-      "export http_proxy=${httpproxy::proxy_uri}",
-      "export https_proxy=${httpproxy::proxy_uri}",
-    ]
+    $lines = concat($base, ["export no_proxy=${httpproxy::no_proxy}"])
+  } else {
+    $lines = $base
   }
 
   # shell paramter enables or disables the shabang at the top of the bash script.

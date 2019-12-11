@@ -17,23 +17,46 @@
 
 # You can contact us through github
 
-# Packagemanager.pp (private class)
-# This class chooses the appropriate package handler class based on OS distribution
-class httpproxy::packagemanager {
-
-  $ensure = $httpproxy::packagemanager ? {
-    true    => $httpproxy::ensure,
-    default => $httpproxy::packagemanager,
-  }
-
+# == define: httpproxy::packagemanager
+#
+# Calling this define will enable proxy management for the appropriate package handler class based on OS distribution
+#
+# === Variables
+#
+# [$ensure]
+#   Should be 'present' or 'absent'. If 'absent', Puppet will ensure the proxy is not set.
+#   Default: present
+#   This variable is optional.
+#
+# [$purge_apt_conf]
+#   If true, remove /etc/apt.conf to ensure it doesn't mess with /etc/apt.conf.d/ files.
+#   Default: false
+#   This variable is optional.
+#
+# === Examples
+#
+# httpproxy::packagemanager { 'httpproxy-pkg': }   # with defaults
+#
+# httpproxy::packagemanager { 'httpproxy-pkg':     # with purge_apt_conf
+#   purge_apt_conf => true,
+# }
+#
+# httpproxy::packagemanager { 'httpproxy-pkg':     # ensure proxy isn't set
+#   ensure => 'absent',
+# }
+#
+define httpproxy::packagemanager (
+  $ensure = 'present',
+  Boolean $purge_apt_conf = false,
+) {
   case $::osfamily {
     'RedHat': {
-      contain '::httpproxy::package::rpm'
-      contain '::httpproxy::package::yum'
+      contain 'httpproxy::package::rpm'
+      contain 'httpproxy::package::yum'
     }
     'Debian': {
-      contain '::httpproxy::package::apt'
-      if $httpproxy::purge_apt_conf { contain '::httpproxy::package::purge_apt_conf' }
+      contain 'httpproxy::package::apt'
+      if $purge_apt_conf { contain 'httpproxy::package::purge_apt_conf' }
     }
     default: { fail('your distro is not supported') }
   }

@@ -16,21 +16,35 @@
 
 # You can contact us through github
 
-# git.pp (private class)
-# Manages proxy for git
-class httpproxy::git {
-    $ensure = $httpproxy::git ? {
-        true    => $httpproxy::ensure,
-        default => $httpproxy::git,
-    }
-
-    if $httpproxy::git::ensure == 'present' {
+# == define: httpproxy::git
+#
+# Calling this define will enable proxy management for git
+#
+# === Variables
+#
+# [$ensure]
+#   Should be 'present' or 'absent'. If 'absent', Puppet will ensure the git http.proxy setting is empty
+#   Default: present
+#   This variable is optional.
+#
+# === Examples
+#
+# httpproxy::git { 'httpproxy-git': }   # with defaults
+#
+# httpproxy::git { 'httpproxy-git':     # ensure git proxy isn't set
+#   ensure => 'absent',
+# }
+#
+define httpproxy::git (
+    $ensure = 'present',
+) {
+    if $ensure == 'present' {
         exec { 'git-proxy':
             command => "/usr/bin/git config --system http.proxy ${httpproxy::proxy_uri}",
             unless  => "/bin/test \"$(/usr/bin/git config --system --get http.proxy)\" == \"${httpproxy::proxy_uri}\"",
             # path    => [ '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin' ],
         }
-    } elsif $httpproxy::git::ensure == 'absent' {
+    } elsif $ensure == 'absent' {
         exec { 'git-proxy':
             command => '/usr/bin/git config --system --unset http.proxy',
             unless  => '/bin/test -z $(git config --system --get http.proxy)',

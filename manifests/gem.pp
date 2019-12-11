@@ -16,14 +16,38 @@
 
 # You can contact us through github
 
-# gem.pp (private class)
-# Manages proxies for ruby gem utility
-class httpproxy::gem {
-  $ensure = $httpproxy::gem ? {
-    true    => $httpproxy::ensure,
-    default => $httpproxy::gem,
-  }
-
+# == define: httpproxy::gem
+#
+# Calling this define will enable proxy management for the ruby gem utility
+#
+# === Variables
+#
+# [$ensure]
+#   Should be 'present' or 'absent'. If 'absent', Puppet will ensure the file at $path is absent.
+#   Default: present
+#   This variable is optional.
+#
+# [$path]
+#   The path to the ruby config file.
+#   Default: /etc/gemrc
+#   This variable is optional.
+#
+# === Examples
+#
+# httpproxy::gem { 'httpproxy-gem': }   # with defaults
+#
+# httpproxy::gem { 'httpproxy-gem':     # with custom path
+#   path => '/root/.gemrc',
+# }
+#
+# httpproxy::gem { 'httpproxy-gem':     # ensure gem proxy isn't set
+#   ensure => 'absent',
+# }
+#
+define httpproxy::gem (
+  $ensure = 'present',
+  $path   = '/etc/gemrc',
+) {
   $lines = [
     '# File managed by Puppet',
     '',
@@ -31,8 +55,8 @@ class httpproxy::gem {
     '',
   ]
 
-  file { '/etc/gemrc':
-    ensure  => $httpproxy::gem::ensure,
+  file { $path:
+    ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',

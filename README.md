@@ -15,35 +15,73 @@ httpproxy
 5. [Contributors](#contributors)
 
 ## Overview
-WARNING: This module will default to wiping any proxies in profile.d, apt conf.d, and yum.conf. Pass false to disable
-the module from handling those software packages.
+This module was created to streamline proxy management of popular software.
+This software includes:
+* apt
+* yum
+* rpm
+* profile.d
+* git
+* wget
+* ruby
 
-This module was created to streamline proxy management of popular software. It can place and remove
-proxies in profile.d, apt, yum, and wget. Currently only http (no https) proxies are supported.
+Currently only http (no https) proxies are supported.
 
 ## Usage
+First, declare the module with the proxy settings:
+
     class { 'httpproxy':
-        http_proxy      => 'my.proxy.com',
+        http_proxy      => 'proxy.my.org',
         http_proxy_port => '80',
         http_proxy_user => 'proxy_user',
         http_proxy_pass => 'proxy_pass',
-        no_proxy        => 'intranet.com',
-        wget            => true,
-        profiled        => true,
-        packagemanager  => true,
-        gem             => true,
-        git             => true,
-        purge_apt_conf  => false,
+        no_proxy        => '.my.org',
     }
-
-Puppet will manage the proxy for the desired software when its boolean is set to true. When a proxy is entered,
-puppet will ensure that the proxy is present. If a proxy is left undefined, puppet will remove whatever proxy it
-placed (ensure absent). If the boolean is set to false, nothing will be removed or placed.
 
 The no_proxy parameter takes a comma separated string of addresses to be ignored by the profile.d proxy.
 
+To enable proxy management:
+
+#### apt/yum/rpm
+
+Defaults:
+
+    httpproxy::packagemanager { 'proxy-pkg': }
+
+Purge /etc/apt.conf:
+
+    httpproxy::packagemanager { 'proxy-pkg':
+        purge_apt_conf => true,
+    }
+
 If purge_apt_conf is set to true, the existing /etc/apt.conf file will be removed (if on Debian/Ubuntu) to ensure
 the apt proxy is managed by this module.
+
+#### profile.d
+
+    httpproxy::profiled { 'proxy-profiled': }
+
+#### git
+
+    httpproxy::git { 'proxy-git': }
+
+#### wget
+
+    httpproxy::wget { 'proxy-wget': }
+
+#### ruby
+
+Defaults:
+
+    httpproxy::gem { 'proxy-gem': }
+
+Custom path:
+
+    httpproxy::gem { 'httpproxy-gem':
+        path => '/root/.gemrc',
+    }
+
+You may pass `ensure => 'absent'` to any of the modules above to ensure there is no proxy set for that module.
 
 ## Reference
 
