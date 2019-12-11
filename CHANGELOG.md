@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## 2.2.0 - 2019-12-10  Eric Frechette
+## 2.2.1 - 2019-12-10  Eric Frechette
 - Added 'unless' checks for git module
 
 ## 2.1.4 - 2019-12-10  Eric Frechette
