@@ -27,7 +27,7 @@ class httpproxy::git {
     if $httpproxy::git::ensure == 'present' {
         exec { 'git-proxy':
             command => "/usr/bin/git config --system http.proxy ${httpproxy::proxy_uri}",
-            unless  => "/bin/echo $(/usr/bin/git config --system --get http.proxy) | /bin/grep -q ${httpproxy::proxy_uri}",
+            unless  => "/bin/test \"$(/usr/bin/git config --system --get http.proxy)\" == \"${httpproxy::proxy_uri}\"",
             # path    => [ '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin' ],
         }
     } elsif $httpproxy::git::ensure == 'absent' {
