@@ -87,5 +87,5 @@ class httpproxy (
 
   # Checks if $http_proxy contains a string. If it is null, $proxy_uri is set to null.
   # Otherwise, it will concatenate $http_proxy and $proxy_port_string.
-  $proxy_uri = "http://${proxy_cred_string}${http_proxy}${proxy_port_string}"
+  $proxy_uri = "http://${proxy_cred_string}${url}${proxy_port_string}"
 }
