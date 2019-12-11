@@ -22,7 +22,7 @@ This module was created to streamline proxy management of popular software. It c
 proxies in profile.d, apt, yum, and wget. Currently only http (no https) proxies are supported.
 
 ## Usage
-    class { '::httpproxy':
+    class { 'httpproxy':
         http_proxy      => 'my.proxy.com',
         http_proxy_port => '80',
         http_proxy_user => 'proxy_user',
@@ -54,7 +54,7 @@ Please contribute, pull requests are welcome. The more proxies that can be manag
 
 ## Limitations
 
-This module has been tested against Puppet 4, CentOS 5,6,7, and Ubuntu 14.04.
+This module has been tested against Puppet 4, 5, 6, CentOS 5, 6, 7, and Ubuntu 14.04, 16.04, 18.04.
 
 ## Contributors
 
