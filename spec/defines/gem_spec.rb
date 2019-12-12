@@ -13,7 +13,7 @@ describe 'httpproxy::gem' do
         it {
           is_expected.to contain_file('/etc/gemrc')
             .with(ensure: 'present')
-            .with_content(%r{^http_proxy: "http:\/\/user:pass@proxy.my.org:80"$})
+            .with_content(%r{^http_proxy: "http://user:pass@proxy.my.org:80"$})
         }
       end
 
@@ -25,7 +25,7 @@ describe 'httpproxy::gem' do
         it {
           is_expected.to contain_file('/root/.gemrc')
             .with(ensure: 'present')
-            .with_content(%r{^http_proxy: "http:\/\/user:pass@proxy.my.org:80"$})
+            .with_content(%r{^http_proxy: "http://user:pass@proxy.my.org:80"$})
         }
       end
 

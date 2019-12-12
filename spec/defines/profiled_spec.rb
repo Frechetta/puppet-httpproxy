@@ -14,8 +14,8 @@ describe 'httpproxy::profiled' do
         it {
           is_expected.to contain_profiled__script('httpproxy.sh')
             .with(ensure: 'present')
-            .with_content(%r{^export http_proxy=http:\/\/user:pass@proxy.my.org:80$})
-            .with_content(%r{^export https_proxy=http:\/\/user:pass@proxy.my.org:80$})
+            .with_content(%r{^export http_proxy=http://user:pass@proxy.my.org:80$})
+            .with_content(%r{^export https_proxy=http://user:pass@proxy.my.org:80$})
         }
       end
 
