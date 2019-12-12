@@ -10,18 +10,20 @@ describe 'httpproxy::git' do
       context 'with defaults' do
         it { is_expected.to compile.with_all_deps }
 
-        it { is_expected.to contain_exec('git-proxy')
-          .with(command: '/usr/bin/git config --system http.proxy http://user:pass@proxy.my.org:80')
+        it {
+          is_expected.to contain_exec('git-proxy')
+            .with(command: '/usr/bin/git config --system http.proxy http://user:pass@proxy.my.org:80')
         }
       end
 
       context 'with ensure = absent' do
-        let(:params) { {ensure: 'absent'} }
+        let(:params) { { ensure: 'absent' } }
 
         it { is_expected.to compile.with_all_deps }
 
-        it { is_expected.to contain_exec('git-proxy')
-          .with(command: '/usr/bin/git config --system --unset http.proxy')
+        it {
+          is_expected.to contain_exec('git-proxy')
+            .with(command: '/usr/bin/git config --system --unset http.proxy')
         }
       end
     end

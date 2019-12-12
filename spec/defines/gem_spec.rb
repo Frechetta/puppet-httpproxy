@@ -10,29 +10,31 @@ describe 'httpproxy::gem' do
       context 'with defaults' do
         it { is_expected.to compile.with_all_deps }
 
-        it { is_expected.to contain_file('/etc/gemrc')
-          .with(ensure: 'present',)
-          .with_content(/^http_proxy: "http:\/\/user:pass@proxy.my.org:80"$/)
+        it {
+          is_expected.to contain_file('/etc/gemrc')
+            .with(ensure: 'present')
+            .with_content(%r{^http_proxy: "http:\/\/user:pass@proxy.my.org:80"$})
         }
       end
 
       context 'with custom path' do
-        let(:params) { {path: '/root/.gemrc'} }
+        let(:params) { { path: '/root/.gemrc' } }
 
         it { is_expected.to compile.with_all_deps }
 
-        it { is_expected.to contain_file('/root/.gemrc')
-          .with(ensure: 'present')
-          .with_content(/^http_proxy: "http:\/\/user:pass@proxy.my.org:80"$/)
+        it {
+          is_expected.to contain_file('/root/.gemrc')
+            .with(ensure: 'present')
+            .with_content(%r{^http_proxy: "http:\/\/user:pass@proxy.my.org:80"$})
         }
       end
 
       context 'with ensure = absent' do
-        let(:params) { {ensure: 'absent'} }
+        let(:params) { { ensure: 'absent' } }
 
         it { is_expected.to compile.with_all_deps }
 
-        it { is_expected.to contain_file('/etc/gemrc').with(ensure: 'absent',) }
+        it { is_expected.to contain_file('/etc/gemrc').with(ensure: 'absent') }
       end
     end
   end

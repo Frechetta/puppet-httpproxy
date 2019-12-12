@@ -11,10 +11,11 @@ describe 'httpproxy::profiled' do
 
         it { is_expected.to compile.with_all_deps }
 
-        it { is_expected.to contain_profiled__script('httpproxy.sh')
-          .with(ensure: 'present')
-          .with_content(/^export http_proxy=http:\/\/user:pass@proxy.my.org:80$/)
-          .with_content(/^export https_proxy=http:\/\/user:pass@proxy.my.org:80$/)
+        it {
+          is_expected.to contain_profiled__script('httpproxy.sh')
+            .with(ensure: 'present')
+            .with_content(%r{^export http_proxy=http:\/\/user:pass@proxy.my.org:80$})
+            .with_content(%r{^export https_proxy=http:\/\/user:pass@proxy.my.org:80$})
         }
       end
 
@@ -23,17 +24,18 @@ describe 'httpproxy::profiled' do
 
         it { is_expected.to compile.with_all_deps }
 
-        it { is_expected.to contain_profiled__script('httpproxy.sh')
-          .with(ensure: 'present')
-          .with_content(/^export http_proxy=http:\/\/user:pass@proxy.my.org:80$/)
-          .with_content(/^export https_proxy=http:\/\/user:pass@proxy.my.org:80$/)
-          .with_content(/^export no_proxy=\.my\.org$/)
+        it {
+          is_expected.to contain_profiled__script('httpproxy.sh')
+            .with(ensure: 'present')
+            .with_content(%r{^export http_proxy=http://user:pass@proxy.my.org:80$})
+            .with_content(%r{^export https_proxy=http://user:pass@proxy.my.org:80$})
+            .with_content(%r{^export no_proxy=\.my\.org$})
         }
       end
 
       context 'with ensure = absent' do
         let(:pre_condition) { 'class { "httpproxy": url => "proxy.my.org", port => 80, user => "user", pass => "pass" }' }
-        let(:params) { {ensure: 'absent'} }
+        let(:params) { { ensure: 'absent' } }
 
         it { is_expected.to compile.with_all_deps }
 

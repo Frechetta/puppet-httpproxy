@@ -10,25 +10,27 @@ describe 'httpproxy::wget' do
       context 'with defaults' do
         it { is_expected.to compile.with_all_deps }
 
-        it { is_expected.to contain_ini_setting('wget-http_proxy')
-          .with(
-            ensure: 'present',
-            setting: 'http_proxy',
-            value: 'http://user:pass@proxy.my.org:80'
-          )
+        it {
+          is_expected.to contain_ini_setting('wget-http_proxy')
+            .with(
+              ensure: 'present',
+              setting: 'http_proxy',
+              value: 'http://user:pass@proxy.my.org:80',
+            )
         }
 
-        it { is_expected.to contain_ini_setting('wget-https_proxy')
-          .with(
-            ensure: 'present',
-            setting: 'https_proxy',
-            value: 'http://user:pass@proxy.my.org:80'
-          )
+        it {
+          is_expected.to contain_ini_setting('wget-https_proxy')
+            .with(
+              ensure: 'present',
+              setting: 'https_proxy',
+              value: 'http://user:pass@proxy.my.org:80',
+            )
         }
       end
 
       context 'with ensure = absent' do
-        let(:params) { {ensure: 'absent'} }
+        let(:params) { { ensure: 'absent' } }
 
         it { is_expected.to compile.with_all_deps }
 
