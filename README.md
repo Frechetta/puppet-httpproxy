@@ -31,11 +31,11 @@ Currently only http (no https) proxies are supported.
 First, declare the module with the proxy settings:
 
     class { 'httpproxy':
-        http_proxy      => 'proxy.my.org',
-        http_proxy_port => '80',
-        http_proxy_user => 'proxy_user',
-        http_proxy_pass => 'proxy_pass',
-        no_proxy        => '.my.org',
+        url      => 'proxy.my.org',
+        port     => '80',
+        user     => 'proxy_user',
+        pass     => 'proxy_pass',
+        no_proxy => '.my.org',
     }
 
 The no_proxy parameter takes a comma separated string of addresses to be ignored by the profile.d proxy.

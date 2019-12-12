@@ -23,23 +23,23 @@
 #
 # === Variables
 #
-# [$http_proxy]
+# [$url]
 #   The proxy url without the port or credentials. Ensure there is no protocol (http:// | https://) or trailing slash.
 #   Example: http://my.proxy
 #   Default: undef
 #   This variable is required.
 #
-# [$http_proxy_port]
+# [$port]
 #   The proxy port.
 #   Default: undef
 #   This variable is optional.
 #
-# [$http_proxy_user]
+# [$user]
 #   The username used to authenticate with the proxy.
 #   Default: undef
 #   This variable is optional.
 #
-# [$http_proxy_pass]
+# [$pass]
 #   The password used to authenticate with the proxy.
 #   Default: undef
 #   This variable is optional.
@@ -72,8 +72,8 @@ class httpproxy (
   $pass             = undef,
   $no_proxy         = undef,
 ) {
-  # Checks if $http_proxy_port contains a string. If $http_proxy_port is null, $proxy_port_string
-  # is set to null. Otherwise, a colon is added in front of $http_proxy_port and stored in
+  # Checks if $port contains a string. If $port is null, $proxy_port_string
+  # is set to null. Otherwise, a colon is added in front of $port and stored in
   # $proxy_port_string
   $proxy_port_string = $port ? {
     undef   => undef,
@@ -85,8 +85,8 @@ class httpproxy (
     default => "${user}:${pass}@",
   }
 
-  # Checks if $http_proxy contains a string. If it is null, $proxy_uri is set to null.
-  # Otherwise, it will concatenate $http_proxy and $proxy_port_string.
+  # Checks if $url contains a string. If it is null, $proxy_uri is set to null.
+  # Otherwise, it will concatenate $url and $proxy_port_string.
   $proxy_uri = "http://${proxy_cred_string}${url}${proxy_port_string}"
 
   notify { 'proxy-uri':
