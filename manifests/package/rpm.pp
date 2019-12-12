@@ -17,14 +17,16 @@
 
 # You can contact us through github
 
-# == Class: httpproxy::package::rpm
+# == define: httpproxy::package::rpm
 #
 # Manages proxies for the rpm package manager
 # /usr/lib/rpm/macros
 # Any per-system configuration
 # should be added to /etc/rpm/macros
 #
-class httpproxy::package::rpm {
+define httpproxy::package::rpm (
+  $ensure = 'present',
+) {
   $lines = [
     '# File managed by Puppet',
     '',
@@ -33,7 +35,7 @@ class httpproxy::package::rpm {
   ]
 
   file { '/etc/rpm/macros.httpproxy':
-    ensure  => $httpproxy::packagemanager::ensure,
+    ensure  => $ensure,
     group   => 'root',
     owner   => 'root',
     mode    => '0644',

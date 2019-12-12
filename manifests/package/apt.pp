@@ -17,12 +17,14 @@
 
 # You can contact us through github
 
-# == Class: httpproxy::package::apt
+# == define: httpproxy::package::apt
 #
 # Uses the puppetlabs-apt module to manage apt package manager proxies
 # https://forge.puppetlabs.com/puppetlabs/apt
 #
-class httpproxy::package::apt {
+define httpproxy::package::apt (
+  $ensure = 'present',
+) {
   $lines = [
     '# File managed by Puppet',
     '',
@@ -32,7 +34,7 @@ class httpproxy::package::apt {
   ]
 
   file { '/etc/apt/apt.conf.d/05proxy':
-    ensure  => $httpproxy::packagemanager::ensure,
+    ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',

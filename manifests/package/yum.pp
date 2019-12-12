@@ -17,15 +17,17 @@
 
 # You can contact us through github
 
-# == Class: httpproxy::package::yum
+# == define: httpproxy::package::yum
 #
 # Manages proxies for the yum package manager
 # Uses the puppetlabs/inifile resource
 # https://forge.puppetlabs.com/puppetlabs/inifile
 #
-class httpproxy::package::yum {
+define httpproxy::package::yum (
+  $ensure = 'present',
+) {
   ini_setting { 'yum_proxy':
-    ensure  => $httpproxy::packagemanager::ensure,
+    ensure  => $ensure,
     path    => '/etc/yum.conf',
     section => 'main',
     setting => 'proxy',
