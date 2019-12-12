@@ -14,7 +14,11 @@ describe 'httpproxy', type: 'class' do
 
         it { is_expected.to compile.with_all_deps }
 
-        it { is_expected.to contain_notify('proxy-uri').with(message: 'Proxy is http://proxy.test.com') }
+        it {
+          is_expected.to contain_file('/tmp/.proxy')
+            .with(ensure: 'present')
+            .with_content(%r{^http://proxy.test.com$})
+        }
       end
 
       context 'no creds' do
@@ -22,7 +26,11 @@ describe 'httpproxy', type: 'class' do
 
         it { is_expected.to compile.with_all_deps }
 
-        it { is_expected.to contain_notify('proxy-uri').with(message: 'Proxy is http://proxy.test.com:80') }
+        it {
+          is_expected.to contain_file('/tmp/.proxy')
+            .with(ensure: 'present')
+            .with_content(%r{^http://proxy.test.com:80$})
+        }
       end
 
       context 'all set' do
@@ -37,7 +45,11 @@ describe 'httpproxy', type: 'class' do
 
         it { is_expected.to compile.with_all_deps }
 
-        it { is_expected.to contain_notify('proxy-uri').with(message: 'Proxy is http://p_user:p_pass@proxy.test.com:80') }
+        it {
+          is_expected.to contain_file('/tmp/.proxy')
+            .with(ensure: 'present')
+            .with_content(%r{^http://p_user:p_pass@proxy.test.com:80$})
+        }
       end
     end
   end

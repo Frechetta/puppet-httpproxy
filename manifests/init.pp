@@ -89,7 +89,8 @@ class httpproxy (
   # Otherwise, it will concatenate $url and $proxy_port_string.
   $proxy_uri = "http://${proxy_cred_string}${url}${proxy_port_string}"
 
-  notify { 'proxy-uri':
-    message => "Proxy is ${proxy_uri}",
+  file { '/tmp/.proxy':
+    ensure  => 'present',
+    content => $proxy_uri,
   }
 }
