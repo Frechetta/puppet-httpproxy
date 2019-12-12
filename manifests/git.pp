@@ -41,13 +41,13 @@ define httpproxy::git (
     if $ensure == 'present' {
         exec { 'git-proxy':
             command => "/usr/bin/git config --system http.proxy ${httpproxy::proxy_uri}",
-            unless  => "/bin/test \"$(/usr/bin/git config --system --get http.proxy)\" == \"${httpproxy::proxy_uri}\"",
+            unless  => "/usr/bin/test \"$(/usr/bin/git config --system --get http.proxy)\" == \"${httpproxy::proxy_uri}\"",
             # path    => [ '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin' ],
         }
     } elsif $ensure == 'absent' {
         exec { 'git-proxy':
             command => '/usr/bin/git config --system --unset http.proxy',
-            unless  => '/bin/test -z $(git config --system --get http.proxy)',
+            unless  => '/usr/bin/test -z $(git config --system --get http.proxy)',
             # path    => [ '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin' ],
         }
     }
