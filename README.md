@@ -12,7 +12,6 @@ httpproxy
 2. [Usage - Configuration options and additional functionality](#usage)
 3. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 4. [Limitations - OS compatibility, etc.](#limitations)
-5. [Contributors](#contributors)
 
 ## Overview
 This module was created to streamline proxy management of popular software.
@@ -93,7 +92,3 @@ Please contribute, pull requests are welcome. The more proxies that can be manag
 ## Limitations
 
 This module has been tested against Puppet 4, 5, 6, CentOS 5, 6, 7, and Ubuntu 14.04, 16.04, 18.04.
-
-## Contributors
-
-Chris Edester, Michael Callahan, and Eric Frechette
